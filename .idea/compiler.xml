@@ -6,8 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="carservice-luquibase" />
+        <module name="car-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="carservice-luquibase" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="car-service" options="-parameters" />
+    </option>
   </component>
 </project>

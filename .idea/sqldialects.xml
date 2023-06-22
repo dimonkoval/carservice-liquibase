@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/cars/create-cars-table.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/cars/insert-cars-table.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/create-products-table.sql" dialect="H2" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/insert-products-table.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/orders/insert-orders-table.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/changelog/changes/owners/create-owners-orders-table.sql" dialect="H2" />
+  </component>
+</project>
