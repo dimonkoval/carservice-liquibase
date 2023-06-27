@@ -8,6 +8,7 @@ import org.example.carservice.dto.request.CarRequestDto;
 import org.example.carservice.dto.response.CarResponseDto;
 import org.example.carservice.model.Car;
 import org.example.carservice.service.CarService;
+import org.example.carservice.service.OwnerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
+    private final OwnerService ownerService;
     private final DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper;
 
     public CarController(CarService carService,
-                         DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper) {
+                         OwnerService ownerService, DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper) {
         this.carService = carService;
+        this.ownerService = ownerService;
         this.dtoMapper = dtoMapper;
     }
 
@@ -41,7 +44,7 @@ public class CarController {
         Car car = carService.getById(id);
         car.setName(requestDto.getName());
         car.setModel(requestDto.getModel());
-        car.setOwner(requestDto.getOwner());
+        car.setOwner(ownerService.getById(requestDto.getOwnerId()));
         car.setNumber(requestDto.getNumber());
         car.setYearOfIssue(requestDto.getYearOfIssue());
         return dtoMapper.toDto(carService.update(car));

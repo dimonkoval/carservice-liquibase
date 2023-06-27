@@ -25,7 +25,7 @@ public class OwnerServiceImpl implements OwnerService {
         Owner entityUpdated = ownerRepository.getById(owner.getId());
         entityUpdated.setCars(owner.getCars());
         entityUpdated.setOrders(owner.getOrders());
-        return entityUpdated;
+        return ownerRepository.save(entityUpdated);
     }
 
     @Override

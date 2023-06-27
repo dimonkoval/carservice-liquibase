@@ -3,20 +3,17 @@ package org.example.carservice.dto.response;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
-import org.example.carservice.model.Car;
 import org.example.carservice.model.Order.StatusOrder;
-import org.example.carservice.model.Product;
-import org.example.carservice.model.Service;
 
 @Data
 public class OrderResponseDto {
     private Long id;
-    private Car car;
+    private Long carId;
     private String problemDescription;
     private LocalDateTime dateOfAcceptance;
     private LocalDateTime dateCompletion;
-    private List<Service> services;
-    private List<Product> products;
+    private List<Long> serviceIds;
+    private List<Long> productIds;
     private StatusOrder statusOrder;
     private double costTotal;
 }

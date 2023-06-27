@@ -2,11 +2,9 @@ package org.example.carservice.dto.request;
 
 import java.util.List;
 import lombok.Data;
-import org.example.carservice.model.Car;
-import org.example.carservice.model.Order;
 
 @Data
 public class OwnerRequestDto {
-    private List<Car> cars;
-    private List<Order> orders;
+    private List<Long> carIds;
+    private List<Long> orderIds;
 }

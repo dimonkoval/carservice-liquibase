@@ -2,6 +2,8 @@ package org.example.carservice.controller;
 
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.example.carservice.dto.mapper.DtoMapper;
 import org.example.carservice.dto.request.OrderRequestDto;
 import org.example.carservice.dto.request.ProductRequestDto;
@@ -9,7 +11,10 @@ import org.example.carservice.dto.response.OrderResponseDto;
 import org.example.carservice.dto.response.ProductResponseDto;
 import org.example.carservice.model.Order;
 import org.example.carservice.model.Product;
+import org.example.carservice.service.CarService;
 import org.example.carservice.service.OrderService;
+import org.example.carservice.service.ProductService;
+import org.example.carservice.service.ServiceService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +27,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
+    private final ServiceService serviceService;
+    private final ProductService productService;
+    private final CarService carService;
     private final DtoMapper<Order, OrderResponseDto, OrderRequestDto> dtoMapper;
     private final DtoMapper<Product, ProductResponseDto, ProductRequestDto> productDtoMapper;
 
     public OrderController(OrderService orderService,
-                           DtoMapper<Order, OrderResponseDto, OrderRequestDto> dtoMapper,
+                           ServiceService serviceService, ProductService productService, CarService carService, DtoMapper<Order, OrderResponseDto, OrderRequestDto> dtoMapper,
                            DtoMapper<Product, ProductResponseDto, ProductRequestDto> productDtoMapper) {
         this.orderService = orderService;
+        this.serviceService = serviceService;
+        this.productService = productService;
+        this.carService = carService;
         this.dtoMapper = dtoMapper;
         this.productDtoMapper = productDtoMapper;
     }
@@ -53,14 +64,20 @@ public class OrderController {
     public OrderResponseDto update(@PathVariable Long id,
                                      @RequestBody OrderRequestDto requestDto) {
         Order order = orderService.getById(id);
-        order.setCostTotal(requestDto.getCostTotal());
-        order.setStatusOrder(requestDto.getStatusOrder());
-        order.setServices(requestDto.getServices());
-        order.setCar(requestDto.getCar());
+        order.setCar(carService.getById(requestDto.getCarId()));
+        order.setProblemDescription(requestDto.getProblemDescription());
         order.setDateCompletion(requestDto.getDateCompletion());
         order.setDateOfAcceptance(requestDto.getDateOfAcceptance());
-        order.setProducts(requestDto.getProducts());
-        order.setProblemDescription(requestDto.getProblemDescription());
+        order.setCostTotal(requestDto.getCostTotal());
+        order.setStatusOrder(requestDto.getStatusOrder());
+        order.setServices(requestDto.getServiceIds()
+                .stream()
+                .map(serviceService::getById)
+                .collect(Collectors.toList()));
+        order.setProducts(requestDto.getProductIds()
+                .stream()
+                .map(productService::getById)
+                .collect(Collectors.toList()));
         return dtoMapper.toDto(orderService.update(order));
     }
 

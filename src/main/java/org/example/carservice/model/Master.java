@@ -1,6 +1,7 @@
 package org.example.carservice.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,17 @@ public class Master {
     private Long id;
     private String name;
     @ManyToMany
-    @JoinTable(name = "master_order",
+    @JoinTable(name = "master_orders",
             joinColumns = @JoinColumn(name = "master_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Order> orders;
+
+    @Override
+    public String toString() {
+        return "Master{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList()) +
+                '}';
+    }
 }

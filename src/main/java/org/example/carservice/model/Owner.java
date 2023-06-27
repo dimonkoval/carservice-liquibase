@@ -1,6 +1,7 @@
 package org.example.carservice.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,4 +29,13 @@ public class Owner {
             joinColumns = @JoinColumn(name = "owner_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Order> orders;
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "id=" + id +
+                ", cars=" + cars.stream().map(Car::getId).collect(Collectors.toList()) +
+                ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList()) +
+                '}';
+    }
 }

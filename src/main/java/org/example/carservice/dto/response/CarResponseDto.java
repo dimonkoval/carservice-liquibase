@@ -1,7 +1,6 @@
 package org.example.carservice.dto.response;
 
 import lombok.Data;
-import org.example.carservice.model.Owner;
 
 @Data
 public class CarResponseDto {
@@ -10,5 +9,5 @@ public class CarResponseDto {
     private String model;
     private int yearOfIssue;
     private String number;
-    private Owner owner;
+    private Long ownerId;
 }

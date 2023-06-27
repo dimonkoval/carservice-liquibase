@@ -36,14 +36,14 @@ public class OrderServiceImpl implements OrderService {
         entityUpdated.setDateCompletion(order.getDateCompletion());
         entityUpdated.setDateOfAcceptance(order.getDateOfAcceptance());
         entityUpdated.setProblemDescription(order.getProblemDescription());
-        return entityUpdated;
+        return orderRepository.save(entityUpdated);
     }
 
     @Override
     public Order updateStatus(Order order) {
         Order entityUpdated = orderRepository.getById(order.getId());
         entityUpdated.setStatusOrder(order.getStatusOrder());
-        return entityUpdated;
+        return orderRepository.save(entityUpdated);
     }
 
     @Override
@@ -64,4 +64,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
+
+//    @Override
+//    public List<Order> findAllByMasters(Master master) {
+//        return orderRepository.findAllByMasters(master);
+//    }
 }
