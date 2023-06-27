@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Entity
@@ -35,6 +34,7 @@ public class Service {
     private StatusService statusService;
     @Column(name = "cost_service")
     private double costService;
+
     public enum StatusService {
         PAID, NOT_PAID
     }

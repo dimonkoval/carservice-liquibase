@@ -49,3 +49,7 @@ databaseChangeLog:
       file: db/changelog/changes/orders/insert/insert-order-services-table.sql
   - include:
       file: db/changelog/changes/owners/insert/insert-owner-orders-table.sql
+  - include:
+      file: db/changelog/changes/services/create/create-service-masters-table.sql
+  - include:
+      file: db/changelog/changes/services/insert/insert-service-masters-table.sql
