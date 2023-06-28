@@ -48,10 +48,10 @@ public class OrderController {
     }
 
     @PutMapping("/product")
-    @ApiOperation(value = "Add new product in order")
+    @ApiOperation(value = "Add new product in the order")
     public OrderResponseDto add(@RequestParam Long productId,
                                 @RequestParam Long orderId) {
-        Order order = orderService.addProduct(orderService.getById(productId),
+        Order order = orderService.addProduct(orderService.getById(orderId),
                 productService.getById(productId));
         return dtoMapper.toDto(order);
     }
