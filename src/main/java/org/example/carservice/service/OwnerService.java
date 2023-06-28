@@ -9,7 +9,7 @@ public interface OwnerService {
 
     Owner update(Owner owner);
 
-    List<Order> getAllByOrders(Long id);
+    List<Order> findAllOrdersByOwnerId(Long id);
 
     List<Owner> findAll();
 

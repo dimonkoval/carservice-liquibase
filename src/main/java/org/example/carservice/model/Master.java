@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import lombok.Data;
 import javax.persistence.Table;
+import lombok.Data;
 
 @Data
 @Entity
@@ -28,10 +28,10 @@ public class Master {
 
     @Override
     public String toString() {
-        return "Master{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList()) +
-                '}';
+        return "Master{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList())
+                + '}';
     }
 }

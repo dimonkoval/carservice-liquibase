@@ -3,7 +3,6 @@ package org.example.carservice.controller;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.example.carservice.dto.mapper.DtoMapper;
 import org.example.carservice.dto.request.MasterRequestDto;
 import org.example.carservice.dto.response.MasterResponseDto;
@@ -28,7 +27,8 @@ public class MasterController {
     private final DtoMapper<Master, MasterResponseDto, MasterRequestDto> dtoMapper;
 
     public MasterController(MasterService masterService,
-                            OrderService orderService, DtoMapper<Master, MasterResponseDto, MasterRequestDto> dtoMapper) {
+                            OrderService orderService,
+                            DtoMapper<Master, MasterResponseDto, MasterRequestDto> dtoMapper) {
         this.masterService = masterService;
         this.orderService = orderService;
         this.dtoMapper = dtoMapper;
@@ -36,8 +36,8 @@ public class MasterController {
 
     @GetMapping("/orders/{id}")
     @ApiOperation(value = "Get all orders by master")
-    public List<Order> getAllOrderByMaster(@PathVariable Long id) {
-        return masterService.findMasterByOrders(masterService.getById(id));
+    public List<Order> findAllOrdersByMaster(@PathVariable Long id) {
+        return masterService.findAllOrdersByMasterId(id);
     }
 
     @GetMapping("/salary")

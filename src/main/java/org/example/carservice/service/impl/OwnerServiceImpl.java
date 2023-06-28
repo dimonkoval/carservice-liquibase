@@ -1,4 +1,4 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
 import java.util.List;
 import org.example.carservice.model.Order;
@@ -29,8 +29,8 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public List<Order> getAllByOrders(Long id) {
-        return ownerRepository.getAllByOrders(id);
+    public List<Order> findAllOrdersByOwnerId(Long id) {
+        return ownerRepository.findAllOrdersByOwnerId(id);
     }
 
     @Override

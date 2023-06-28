@@ -25,7 +25,8 @@ public class CarController {
     private final DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper;
 
     public CarController(CarService carService,
-                         OwnerService ownerService, DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper) {
+                         OwnerService ownerService,
+                         DtoMapper<Car, CarResponseDto, CarRequestDto> dtoMapper) {
         this.carService = carService;
         this.ownerService = ownerService;
         this.dtoMapper = dtoMapper;
@@ -52,8 +53,8 @@ public class CarController {
 
     @GetMapping("/{id}")
     @ApiOperation(value = "Get car by id")
-    public Car getById(@PathVariable Long id) {
-        return carService.getById(id);
+    public CarResponseDto getById(@PathVariable Long id) {
+        return dtoMapper.toDto(carService.getById(id));
     }
 
     @GetMapping

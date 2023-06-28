@@ -1,4 +1,4 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
 import org.example.carservice.model.Service;
 import org.example.carservice.repository.ServiceRepository;

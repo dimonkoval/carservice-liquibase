@@ -1,4 +1,4 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
 import static org.example.carservice.util.Sorting.getSortFromRequestParam;
 

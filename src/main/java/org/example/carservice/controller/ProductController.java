@@ -5,9 +5,9 @@ import io.swagger.annotations.ApiParam;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.example.carservice.dto.mapper.DtoMapper;
 import org.example.carservice.dto.request.ProductRequestDto;
 import org.example.carservice.dto.response.ProductResponseDto;
-import org.example.carservice.dto.mapper.DtoMapper;
 import org.example.carservice.model.Product;
 import org.example.carservice.service.ProductService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,7 +77,8 @@ public class ProductController {
     }
 
     @GetMapping("/price-between")
-    @ApiOperation(value = "Get all products between price from-to")
+    @ApiOperation(value = "Get all products between price from-to "
+            + "and sorting on [parameter]:[ASC|DESC]")
     public List<ProductResponseDto> findAllPriceBetween(
             @RequestParam(defaultValue = "0")
             @ApiParam(value = "default value is '0'") BigDecimal from,

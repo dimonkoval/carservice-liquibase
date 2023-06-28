@@ -1,6 +1,7 @@
 package org.example.carservice.controller;
 
 import io.swagger.annotations.ApiOperation;
+import java.util.stream.Collectors;
 import org.example.carservice.dto.mapper.DtoMapper;
 import org.example.carservice.dto.request.ServiceRequestDto;
 import org.example.carservice.dto.response.ServiceResponseDto;
@@ -15,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/services")
 public class ServiceController {
@@ -26,7 +25,8 @@ public class ServiceController {
     private final DtoMapper<Service, ServiceResponseDto, ServiceRequestDto> dtoMapper;
 
     public ServiceController(ServiceService serviceService,
-                             MasterService masterService, OrderService orderService, DtoMapper<Service, ServiceResponseDto, ServiceRequestDto> dtoMapper) {
+                             MasterService masterService, OrderService orderService,
+                             DtoMapper<Service, ServiceResponseDto, ServiceRequestDto> dtoMapper) {
         this.serviceService = serviceService;
         this.masterService = masterService;
         this.orderService = orderService;
@@ -36,13 +36,13 @@ public class ServiceController {
     @PostMapping
     @ApiOperation(value = "Create new service")
     public ServiceResponseDto create(@RequestBody ServiceRequestDto requestDto) {
-        Service service = dtoMapper.toModel(requestDto);
-        return dtoMapper.toDto(service);
+        return dtoMapper.toDto(serviceService.create(dtoMapper.toModel(requestDto)));
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update service by id")
-    public ServiceResponseDto update(@PathVariable Long id, @RequestBody ServiceRequestDto requestDto) {
+    public ServiceResponseDto update(@PathVariable Long id,
+                                     @RequestBody ServiceRequestDto requestDto) {
         Service entityUpdated = serviceService.getById(id);
         entityUpdated.setCostService(requestDto.getCostService());
         entityUpdated.setStatusService(requestDto.getStatusService());

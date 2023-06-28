@@ -1,5 +1,7 @@
 package org.example.carservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +23,6 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name = "orders")
-//@ToString(exclude = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +37,13 @@ public class Order {
     private LocalDateTime dateOfAcceptance;
     @Column(name = "date_completion")
     private LocalDateTime dateCompletion;
-    @ToString.Exclude
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "order_services",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     private List<Service> services;
-    @ToString.Exclude
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "order_products",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -52,24 +53,27 @@ public class Order {
     @Column(name = "status_order")
     private StatusOrder statusOrder;
     @Column(name = "cost_total")
-    private double costTotal;
+    private BigDecimal costTotal;
 
     public enum StatusOrder {
-        ACCEPTED, IN_PROGRESS, SUCCESSFULLY_COMPLETED, NOT_SUCCESSFULLY_COMPLETED
+        ACCEPTED,
+        IN_PROGRESS,
+        SUCCESSFULLY_COMPLETED,
+        NOT_SUCCESSFULLY_COMPLETED
     }
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", car=" + car.getId() +
-                ", problemDescription='" + problemDescription + '\'' +
-                ", dateOfAcceptance=" + dateOfAcceptance +
-                ", dateCompletion=" + dateCompletion +
-                ", services=" + services.stream().map(Service::getId).collect(Collectors.toList()) +
-                ", products=" + products.stream().map(Product::getId).collect(Collectors.toList()) +
-                ", statusOrder=" + statusOrder +
-                ", costTotal=" + costTotal +
-                '}';
+        return "Order{"
+                + "id=" + id
+                + ", car=" + car.getId()
+                + ", problemDescription='" + problemDescription + '\''
+                + ", dateOfAcceptance=" + dateOfAcceptance
+                + ", dateCompletion=" + dateCompletion
+                + ", services=" + services.stream().map(Service::getId).collect(Collectors.toList())
+                + ", products=" + products.stream().map(Product::getId).collect(Collectors.toList())
+                + ", statusOrder=" + statusOrder
+                + ", costTotal=" + costTotal
+                + '}';
     }
 }

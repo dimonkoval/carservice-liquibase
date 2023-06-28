@@ -9,7 +9,7 @@ public interface MasterService {
 
     Master update(Master master);
 
-    List<Order> findMasterByOrders(Master master);
+    List<Order> findAllOrdersByMasterId(Long masterId);
 
     double getSalaryOfMasterByOrder(Long masterId, Long orderId);
 

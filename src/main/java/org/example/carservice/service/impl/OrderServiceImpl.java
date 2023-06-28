@@ -1,5 +1,6 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.example.carservice.model.Order;
 import org.example.carservice.model.Product;
@@ -47,8 +48,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public double getTotalCost(Order order) {
-        return orderRepository.getOrderByCostTotal(order);
+    public BigDecimal getTotalCost(Order order) {
+        return order.getCostTotal();
     }
 
     @Override
@@ -65,8 +66,4 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
-//    @Override
-//    public List<Order> findAllByMasters(Master master) {
-//        return orderRepository.findAllByMasters(master);
-//    }
 }

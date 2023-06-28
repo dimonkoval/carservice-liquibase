@@ -28,7 +28,8 @@ public class OwnerController {
     private final DtoMapper<Owner, OwnerResponseDto, OwnerRequestDto> dtoMapper;
 
     public OwnerController(OwnerService ownerService,
-                           OrderService orderService, CarService carService, DtoMapper<Owner, OwnerResponseDto, OwnerRequestDto> dtoMapper) {
+                           OrderService orderService, CarService carService,
+                           DtoMapper<Owner, OwnerResponseDto, OwnerRequestDto> dtoMapper) {
         this.ownerService = ownerService;
         this.orderService = orderService;
         this.carService = carService;
@@ -43,10 +44,11 @@ public class OwnerController {
 
     @PostMapping
     @ApiOperation(value = "Create new owner")
-    public OwnerResponseDto create(@RequestBody OwnerRequestDto requestDto){
+    public OwnerResponseDto create(@RequestBody OwnerRequestDto requestDto) {
         Owner owner = ownerService.create(dtoMapper.toModel(requestDto));
         return dtoMapper.toDto(owner);
     }
+
     @PutMapping("/{id}")
     @ApiOperation(value = "Update owner")
     public OwnerResponseDto update(@PathVariable Long id, @RequestBody OwnerRequestDto requestDto) {
@@ -64,8 +66,7 @@ public class OwnerController {
 
     @GetMapping("/orders/{id}")
     @ApiOperation(value = "Get all orders of owner by id")
-    public List<Order> getAllByOrders(@PathVariable Long id) {
-        return ownerService.getAllByOrders(id);
+    public List<Order> findAllOrdersByOwnerId(@PathVariable Long id) {
+        return ownerService.findAllOrdersByOwnerId(id);
     }
-
 }

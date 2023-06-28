@@ -1,5 +1,6 @@
 package org.example.carservice.dto.request;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Data;
@@ -14,5 +15,5 @@ public class OrderRequestDto {
     private List<Long> serviceIds;
     private List<Long> productIds;
     private StatusOrder statusOrder;
-    private double costTotal;
+    private BigDecimal costTotal;
 }

@@ -41,12 +41,12 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList()) +
-                ", masters=" + masters.stream().map(Master::getId).collect(Collectors.toList()) +
-                ", statusService=" + statusService +
-                ", costService=" + costService +
-                '}';
+        return "Service{"
+                + "id=" + id
+                + ", orders=" + orders.stream().map(Order::getId).collect(Collectors.toList())
+                + ", masters=" + masters.stream().map(Master::getId).collect(Collectors.toList())
+                + ", statusService=" + statusService
+                + ", costService=" + costService
+                + '}';
     }
 }

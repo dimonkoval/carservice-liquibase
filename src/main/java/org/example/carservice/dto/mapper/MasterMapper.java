@@ -1,21 +1,18 @@
 package org.example.carservice.dto.mapper;
 
+import java.util.stream.Collectors;
 import org.example.carservice.dto.request.MasterRequestDto;
 import org.example.carservice.dto.response.MasterResponseDto;
 import org.example.carservice.model.Master;
 import org.example.carservice.model.Order;
-import org.example.carservice.service.MasterService;
 import org.example.carservice.service.OrderService;
 import org.springframework.stereotype.Component;
-import java.util.stream.Collectors;
 
 @Component
-public class MasterMapper implements DtoMapper<Master, MasterResponseDto, MasterRequestDto>{
-    private final MasterService masterService;
+public class MasterMapper implements DtoMapper<Master, MasterResponseDto, MasterRequestDto> {
     private final OrderService orderService;
 
-    public MasterMapper(MasterService masterService, OrderService orderService) {
-        this.masterService = masterService;
+    public MasterMapper(OrderService orderService) {
         this.orderService = orderService;
     }
 

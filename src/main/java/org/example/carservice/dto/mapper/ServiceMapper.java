@@ -1,5 +1,6 @@
 package org.example.carservice.dto.mapper;
 
+import java.util.stream.Collectors;
 import org.example.carservice.dto.request.ServiceRequestDto;
 import org.example.carservice.dto.response.ServiceResponseDto;
 import org.example.carservice.model.Master;
@@ -9,10 +10,8 @@ import org.example.carservice.service.MasterService;
 import org.example.carservice.service.OrderService;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
 @Component
-public class ServiceMapper implements DtoMapper<Service, ServiceResponseDto, ServiceRequestDto>{
+public class ServiceMapper implements DtoMapper<Service, ServiceResponseDto, ServiceRequestDto> {
     private final MasterService masterService;
     private final OrderService orderService;
 

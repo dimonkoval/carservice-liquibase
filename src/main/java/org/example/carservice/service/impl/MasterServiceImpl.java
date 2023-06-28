@@ -1,4 +1,4 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
 import java.util.List;
 import org.example.carservice.model.Master;
@@ -29,8 +29,8 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public List<Order> findMasterByOrders(Master master) {
-        return masterRepository.findMasterByOrders(master);
+    public List<Order> findAllOrdersByMasterId(Long masterId) {
+        return masterRepository.findAllOrdersByMasterId(masterId);
     }
 
     @Override

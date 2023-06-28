@@ -10,9 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface MasterRepository extends JpaRepository<Master, Long> {
-    List<Order> findMasterByOrders(Master master);
+    @Query("SELECT o FROM Master m JOIN m.orders o WHERE m.id = :masterId")
+    List<Order> findAllOrdersByMasterId(@Param("masterId") Long masterId);
 
-    @Query("SELECT o.costTotal FROM Master m JOIN m.orders o WHERE m.id = :masterId AND o.id = :orderId")
-    double getSalaryOfMasterByOrder(@Param("masterId") Long masterId, @Param("orderId") Long orderId);
+    @Query("SELECT o.costTotal FROM Master m JOIN m.orders o "
+            + "WHERE m.id = :masterId AND o.id = :orderId")
+    double getSalaryOfMasterByOrder(@Param("masterId") Long masterId,
+                                    @Param("orderId") Long orderId);
 
 }

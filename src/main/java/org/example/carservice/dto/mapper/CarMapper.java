@@ -7,7 +7,7 @@ import org.example.carservice.service.OwnerService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarMapper implements DtoMapper<Car, CarResponseDto, CarRequestDto>{
+public class CarMapper implements DtoMapper<Car, CarResponseDto, CarRequestDto> {
     private final OwnerService ownerService;
 
     public CarMapper(OwnerService ownerService) {

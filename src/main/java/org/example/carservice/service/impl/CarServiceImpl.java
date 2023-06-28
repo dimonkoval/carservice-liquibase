@@ -1,4 +1,4 @@
-package org.example.carservice.service.Impl;
+package org.example.carservice.service.impl;
 
 import java.util.List;
 import org.example.carservice.model.Car;

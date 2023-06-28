@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Data
@@ -28,13 +27,13 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", yearOfIssue=" + yearOfIssue +
-                ", number='" + number + '\'' +
-                ", owner=" + owner.getId() +
-                '}';
+        return "Car{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", model='" + model + '\''
+                + ", yearOfIssue=" + yearOfIssue
+                + ", number='" + number + '\''
+                + ", owner=" + owner.getId()
+                + '}';
     }
 }
